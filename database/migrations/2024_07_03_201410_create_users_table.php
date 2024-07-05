@@ -26,6 +26,7 @@ return new class extends Migration
 
             #Modificamos los campos que se requieren en Users
             $table->id();
+            $table->unsignedBigInteger('id_region');
             $table->unsignedBigInteger('id_delegacion');
             $table->unsignedBigInteger('id_secretaria');
             $table->string('titulo' , 150);
@@ -49,12 +50,10 @@ return new class extends Migration
             
             $table->timestamps();
 
-
-
-
-
-
-
+            $table->foreign('id_region')->references('id')->on('regiones');
+            $table->foreign('id_delegacion')->references('id')->on('delegaciones');
+            $table->foreign('id_secretaria')->references('id')->on('secretarias');
+            $table->foreign('id_genero')->references('id')->on('genero');
 
         });
     }
