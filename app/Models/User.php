@@ -30,12 +30,15 @@ class User extends Authenticatable
         // 'password',
 
         #Protegiendo las rutas creadas
+        'id_region',
         'id_delegacion',
         'id_secretaria',
         'titulo',
         'nombre',
         'apaterno',
         'amaterno',
+        'email',
+        'password',        
         'id_genero',
         'email',
         'password',

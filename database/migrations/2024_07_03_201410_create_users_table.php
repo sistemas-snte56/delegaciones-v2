@@ -29,10 +29,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_region');
             $table->unsignedBigInteger('id_delegacion');
             $table->unsignedBigInteger('id_secretaria');
-            $table->string('titulo' , 150);
-            $table->string('nombre' , 150);
-            $table->string('apaterno' , 150);
-            $table->string('amaterno' , 150);
+            $table->string('titulo' , 255);
+            $table->string('nombre' , 255);
+            $table->string('apaterno' , 255);
+            $table->string('amaterno' , 255)->nullable()->default(null);
             $table->unsignedBigInteger('id_genero');
 
             $table->string('email')->unique();
