@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
-    'title_prefix' => '',
+    'title' => 'Sección 56',
+    'title_prefix' => 'SNTE56 |',
     'title_postfix' => '',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -171,12 +171,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-info',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-info',
 
     /*
     |--------------------------------------------------------------------------
@@ -194,9 +194,9 @@ return [
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
-    'classes_content_header' => '',
+    // 'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    // 'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -214,7 +214,18 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
+    # ORIGINALES
+    // 'sidebar_mini' => 'lg',
+    // 'sidebar_collapse' => false,
+    // 'sidebar_collapse_auto_size' => false,
+    // 'sidebar_collapse_remember' => false,
+    // 'sidebar_collapse_remember_no_transition' => true,
+    // 'sidebar_scrollbar_theme' => 'os-theme-light',
+    // 'sidebar_scrollbar_auto_hide' => 'l',
+    // 'sidebar_nav_accordion' => true,
+    // 'sidebar_nav_animation_speed' => 300,
+
+    'sidebar_mini' => false,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -223,7 +234,8 @@ return [
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
-
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Control Sidebar (Right Sidebar)
@@ -371,22 +383,87 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+
+
         [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
+            'header' => 'CONFIGURACIÓN',
+            'classes' => 'text-orange text-bold text-left',
         ],
         [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
+            'text' => 'Roles y Permisos',
+            'icon' => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'icon' => 'fa fa-home',
+                    'text' => 'Página de roles',
+                    'route' => 'rol.index',
+                    'classes' => 'text-right',
+                ],
+                [
+                    'text' => 'Crear nuevo rol',
+                    'icon' => 'fa fa-plus',
+                    'route' => 'rol.create',
+                    'classes' => 'text-right',
+                ],
+            ],
         ],
         [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'text' => 'User',
+            'icon' => 'fa fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Página de usuarios',
+                    'icon' => 'fa fa-home',
+                    'route' => 'usuario.index',
+                    'classes' => 'text-right',
+                ],
+                [
+                    'text' => 'Crear nuevo usuario',
+                    'icon' => 'fa fa-plus',
+                    'route' => 'usuario.create',
+                    'classes' => 'text-right',
+                ],
+            ],
         ],
+        [
+            'text' => 'Regiones',
+            'icon' => 'fa fa-city',
+            'submenu' => [
+                [
+                    'text' => 'Página de regiones',
+                    'icon' => 'fa fa-home',
+                    'route' => 'region.index',
+                    'classes' => 'text-right',
+                ],
+                [
+                    'text' => 'Crear nueva región',
+                    'icon' => 'fa fa-plus',
+                    'route' => 'region.create',
+                    'classes' => 'text-right',
+                ],
+            ],
+        ],
+
+
+
+        /*
+            ['header' => 'labels'],
+            [
+                'text' => 'important',
+                'icon_color' => 'red',
+                'url' => '#',
+            ],
+            [
+                'text' => 'warning',
+                'icon_color' => 'yellow',
+                'url' => '#',
+            ],
+            [
+                'text' => 'information',
+                'icon_color' => 'cyan',
+                'url' => '#',
+            ],
+        */
     ],
 
     /*
@@ -442,6 +519,11 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'css/admin_custom.css',
+                ],                
             ],
         ],
         'Select2' => [
@@ -470,12 +552,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
@@ -541,5 +623,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

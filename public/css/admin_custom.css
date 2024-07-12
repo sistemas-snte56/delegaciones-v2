@@ -1,0 +1,24 @@
+.tota-delegaciones {
+    border: 2px solid orange;
+    background-color: #ee7a00;
+    border-radius: 5px; /* Ajusta el valor según desees */
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 5px 10px; /* Ajusta el relleno según desees */
+    margin-right: 5px; /* Ajusta el margen derecho según desees */
+    display: inline-block; /* Para que no ocupe toda la línea */
+    width: calc(100% - 10px); /* Toma el 100% del ancho menos el margen derecho */
+    text-align: right; /* Alinea el texto a la derecha */
+}
+
+.title {
+    font-weight: bold;
+    font-size: x-large;
+    color: #ee7a00;
+}
+
+.title h1 h5{
+    font-weight: bold;
+    color: #9d2449;
+}

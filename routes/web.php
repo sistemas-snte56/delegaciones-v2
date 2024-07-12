@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RolController;
+use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\Admin\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +28,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('admin/roles', RolController::class)->names('rol');
+    Route::resource('admin/usuarios', UsuarioController::class)->names('usuario');
+    Route::resource('admin/regiones', RegionController::class)->names('region');
 });
