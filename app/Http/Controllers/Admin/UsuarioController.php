@@ -21,10 +21,10 @@ class UsuarioController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:usuario.show|usuario.create|usuario.edit|usuario.destroy', ['only' => ['index']]);
-        $this->middleware('permission:usuario.create',  ['only' => ['create','store']]);
-        $this->middleware('permission:usuario.edit',    ['only' => ['edit','update']]);
-        $this->middleware('permission:usuario.destroy', ['only' => ['destroy']]);
+        $this->middleware('permission:usuario.show|usuario.create|usuario.edit|usuario.destroy')->only('index');
+        $this->middleware('permission:usuario.create',['only' => ['create','store']]);
+        $this->middleware('permission:usuario.edit',['only' => ['edit','update']]);
+        $this->middleware('permission:usuario.destroy',['only' => ['destroy']]);
     }
         
     /**
@@ -56,8 +56,8 @@ class UsuarioController extends Controller
 
 
         $secretarias = Secretaria::pluck('cartera_secretaria','id');
-        $roles = Role::pluck('name','name')->all();
-        return view('admin.usuarios.create', compact('roles','regiones','delegaciones','secretarias'));
+        // $roles = Role::pluck('name', 'id')->all();
+        return view('admin.usuarios.create', compact('regiones','delegaciones','secretarias'));
     }
 
     /**
@@ -69,7 +69,7 @@ class UsuarioController extends Controller
             'select_region' => ['required','int', 'max:255'],
             'select_delegacion' => ['required','int', 'max:655'],
             'select_secretaria' => ['required','int', 'max:255'],
-            // 'select_roles' => ['required','int', 'max:255'],
+            // 'select_rol' => ['required'],
             'select_titulo' => ['required','string', 'max:255'],
             'nombre' => ['required','string','max:255'],
             'apellido_paterno' => ['required','string','max:255'],
@@ -97,15 +97,17 @@ class UsuarioController extends Controller
         $user->email  = strtolower($request->input('email'));
         $user->password  = Hash::make($request->input('password')) ;
 
-        // # Se le asigna Rol
-        // $user->assignRole($request->input('select_roles'));
+        # Se le asigna Rol
+        // $user->assignRole($request->input('select_rol'));
+        // $user->syncRoles($request->input('select_rol'));
+
+        // $user->roles()->sync($request->input('select_rol'));
 
 
         # Guardar el nuevo registro en la base de datos
         $user->save(); 
 
         # Regresamos a la vista Index
-        // return view('admin.usuarios.index', compact('user'));  
         return redirect()->route('usuario.index')->with('success_save','Registro guardado');
     }
 
@@ -150,7 +152,8 @@ class UsuarioController extends Controller
        
        
        
-        $roles = Role::pluck('name','name')->all();
+        // $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('name', 'id')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
         return view('admin.usuarios.edit', compact('user','roles','userRole','regiones','delegaciones','secretarias','userDelegacion','userSecretaria'));
@@ -161,12 +164,13 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request);
         $validation = $request->validate([
             'select_region' => 'required',
             'select_delegacion' => 'required',
             'select_secretaria' => 'required',
             'select_titulo' => 'required',
-            // 'select_roles' => 'required',
+            'select_rol' => 'required',
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             // 'select_genero' => 'required',
@@ -200,7 +204,10 @@ class UsuarioController extends Controller
 
         // DB::table('model_has_roles')->where('model_id',$id)->delete();
 
-        // $user->assignRole($request->input('roles'));
+        // $user->assignRole($request->input('select_rol'));
+
+
+        $user->roles()->sync($request->input('select_rol'));
         
         return redirect()->route('usuario.index',$user)->with('update_user','Usuario actualizado ');
 

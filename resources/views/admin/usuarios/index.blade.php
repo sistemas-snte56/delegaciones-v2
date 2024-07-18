@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
             Lista de <strong>Regiones</strong>
-            <a href="{{route('usuario.create')}}" class="btn btn-primary float-right"><i class="fa fa-sm fa-fw fa-pen"></i>&emsp;Nueva Región</a>
+            <a href="{{route('usuario.create')}}" class="btn btn-primary float-right"><i class="fa fa-sm fa-fw fa-pen"></i>&emsp;Nuevo usuario</a>
         </div>
         <div class="card-body">
             {{-- Setup data for datatables --}}

@@ -114,17 +114,29 @@
                         </x-slot>
                     </x-adminlte-input>
 
-                    <x-adminlte-select name="select_rol" label="ROL" label-class="text-orange" fgroup-class="col-md-3">
+                    <x-adminlte-input name="telefono" id="telefono" type="text" label="CORREO ELECTRÓNICO" label-class="text-orange" placeholder="Ingresa tu telefono"  fgroup-class="col-md-3" value=" {{ old('telefono',$user->telefono)}} " >
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text">
+                                <i class="fas fa-phone text-orange"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input>
+
+                </div>
+                
+                <hr>
+
+                <div class="row">
+                    <x-adminlte-select name="select_rol" label="ROL" label-class="text-orange" fgroup-class="col-md-12">
                         <x-slot name="prependSlot">
                             <div class="input-group-text">
                                 <i class="fas fa-users text-orange"></i>
                             </div>
                         </x-slot>
                         <option value="" empty-option="Selecciona un Rol" >Selecciona un Rol</option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
+                        @foreach($roles as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                        @endforeach
                     </x-adminlte-select>
                 </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PermisoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\RegionController;
@@ -30,6 +31,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('admin/roles', RolController::class)->names('rol');
+    Route::resource('admin/permisos', PermisoController::class)->names('permiso');
     Route::resource('admin/usuarios', UsuarioController::class)->names('usuario');
     Route::resource('admin/regiones', RegionController::class)->names('region');
 });

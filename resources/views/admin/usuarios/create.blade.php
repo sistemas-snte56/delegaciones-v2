@@ -110,18 +110,17 @@
                         </x-slot>
                     </x-adminlte-input>
 
-                    <x-adminlte-select name="select_rol" label="ROL" label-class="text-orange" fgroup-class="col-md-3">
+                    {{-- <x-adminlte-select name="select_rol" label="ROL" label-class="text-orange" fgroup-class="col-md-3">
                         <x-slot name="prependSlot">
                             <div class="input-group-text">
                                 <i class="fas fa-users text-orange"></i>
                             </div>
                         </x-slot>
                         <option value="" empty-option="Selecciona un Rol" >Selecciona un Rol</option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
-                        <option value="" empty-option="" ></option>
-                    </x-adminlte-select>
+                        @foreach($roles as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                        @endforeach
+                    </x-adminlte-select> --}}
                                         
                     <x-adminlte-input name="password" id="password" type="password" label="CONTRASEÑA" label-class="text-orange" placeholder="Ingresa tu password"  fgroup-class="col-md-3">
                         <x-slot name="prependSlot">

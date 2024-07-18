@@ -394,16 +394,18 @@ return [
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'icon' => 'fa fa-home',
-                    'text' => 'Página de roles',
+                    'icon' => 'fa fa-cog',
+                    'text' => 'Lista de roles',
                     'route' => 'rol.index',
                     'classes' => 'text-right',
+                    'can' => 'ver-pagina-roles',
                 ],
                 [
-                    'text' => 'Crear nuevo rol',
-                    'icon' => 'fa fa-plus',
-                    'route' => 'rol.create',
+                    'icon' => 'fa fa-key',
+                    'text' => 'Lista de permisos',
+                    'route' => 'permiso.index',
                     'classes' => 'text-right',
+                    // 'can' => 'permiso.index', 
                 ],
             ],
         ],
@@ -412,7 +414,7 @@ return [
             'icon' => 'fa fa-user',
             'submenu' => [
                 [
-                    'text' => 'Página de usuarios',
+                    'text' => 'Lista de usuarios',
                     'icon' => 'fa fa-home',
                     'route' => 'usuario.index',
                     'classes' => 'text-right',
