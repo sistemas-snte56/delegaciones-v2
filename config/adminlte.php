@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -338,6 +338,11 @@ return [
             'route' => 'user.index',
             'icon' => 'fas fa-fw fa-users',
             'can' => 'user.index',
+        ],
+        [
+            'text' => 'Regiones',
+            'route' => 'region.index',
+            'icon' => 'fas fa-fw fa-city',
         ],
     ],
 

@@ -24,7 +24,7 @@ class RoleSeeder extends Seeder
         $manager = Role::create(['name'=>'Coordinator']); // Coordinador Regional
         $developer = Role::create(['name'=>'Developer']);
 
-        #Creación de permisos
+        #Creación de permisos para users
         Permission::create(['name'=>'dashboard'])->syncRoles([$admin,$manager,$developer]);
         Permission::create(['name'=>'user.index'])->syncRoles([$admin,$manager]);
         Permission::create(['name'=>'user.show'])->syncRoles([$admin,$manager]);
@@ -33,5 +33,14 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'user.edit'])->assignRole([$admin]);
         Permission::create(['name'=>'user.update'])->assignRole([$admin]);
         Permission::create(['name'=>'user.destroy'])->assignRole([$admin]);
+
+        #Creación de permisos para regiones
+        Permission::create(['name'=>'region.index'])->syncRoles([$admin,$manager]);
+        Permission::create(['name'=>'region.show'])->assignRole([$admin]);
+        Permission::create(['name'=>'region.create'])->assignRole([$admin]);
+        Permission::create(['name'=>'region.store'])->assignRole([$admin]);
+        Permission::create(['name'=>'region.edit'])->assignRole([$admin]);
+        Permission::create(['name'=>'region.update'])->assignRole([$admin]);
+        Permission::create(['name'=>'region.destroy'])->assignRole([$admin]);
     }
 }

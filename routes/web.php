@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RegionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 
@@ -26,4 +27,5 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     Route::resource('admin/users', UserController::class)->names('user');
+    Route::resource('admin/regiones', RegionController::class)->names('region');
 });
