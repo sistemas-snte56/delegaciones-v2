@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,71 +18,308 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         # Creando con un Seeder el usuario principal
-        DB::table('users')->insert([
-            [
-                'id_region' => 5,
-                'id_delegacion' => 138,
-                'id_secretaria' => 16,
-                'titulo' => 'PROF.',
-                'nombre' => 'User',
-                'apaterno' => 'Admin',
-                'amaterno' => '',
-                'id_genero' => 1,
+        // DB::table('users')->insert([
+        //     [
+        //         'id_region' => 5,
+        //         'id_delegacion' => 138,
+        //         'id_secretaria' => 16,
+        //         'titulo' => 'PROF.',
+        //         'nombre' => 'User',
+        //         'apaterno' => 'Admin',
+        //         'amaterno' => '',
+        //         'id_genero' => 1,
 
-                'email' => 'admin@example.com',
-                'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'two_factor_secret' => null,
-                'two_factor_recovery_codes' => null,
-                'remember_token' => Str::random(10),
-                'profile_photo_path' => null,
-                'current_team_id' => null,                
-                'telefono' => '1111111111',
-                'direccion' => 'capricornio #23',
-                'cp' => '91000',
-                'ciudad' => 'Xalapa',
-                'estado' => 'Veracruz',
+        //         'email' => 'admin@example.com',
+        //         'email_verified_at' => now(),
+        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //         'two_factor_secret' => null,
+        //         'two_factor_recovery_codes' => null,
+        //         'remember_token' => Str::random(10),
+        //         'profile_photo_path' => null,
+        //         'current_team_id' => null,                
+        //         'telefono' => '1111111111',
+        //         'direccion' => 'capricornio #23',
+        //         'cp' => '91000',
+        //         'ciudad' => 'Xalapa',
+        //         'estado' => 'Veracruz',
 
-            ],
-        ]);
-    }
-}
-/*
+        //     ],
+        // ]);
 
-        return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'two_factor_secret' => null,
-            'two_factor_recovery_codes' => null,
-            'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
-            'current_team_id' => null,
+
+        $users = [
+            // [ 'id_region' => 1,'id_delegacion' => 1,'id_secretaria' => 1,'id_genero' => 1,'titulo' => 'Lic.','nombre' => 'Juan','apaterno' => 'Pérez','amaterno' => 'García','email' => 'juan@example.co','password' => Hash::make('password123'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	138	,'id_secretaria' => 	16	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	SUPER	','apaterno' => '	ADMINISTRADOR	','amaterno' => '		','email' => 'admin@example.com','password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	2	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUÍS ALFREDO	','apaterno' => '	HERRERA	','amaterno' => '	HERNÁNDEZ	','email' =>'snte56d-ii-59panuco@outlook.com','password' => Hash::make('pwd002'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	3	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JORGE LUIS	','apaterno' => '	BERNABE	','amaterno' => '	GARCIA	','email' =>'jlberna_18@hotmail.com','password' => Hash::make('pwd003'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	4	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	PÁVEL ISRAEL	','apaterno' => '	GARCÍA	','amaterno' => '	GÓMEZ	','email' =>'pavelisraelgarciagomez@gmail.com','password' => Hash::make('pwd004'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	5	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	BEATRIZ OLIVIA	','apaterno' => '	BARRADAS	','amaterno' => '	GONZÁLEZ	','email' =>'beatriz.bar.71@gmail.com','password' => Hash::make('pwd005'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	6	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ROBERTO CARLOS	','apaterno' => '	GARCÍA	','amaterno' => '	ALEJANDRE	','email' =>'alejandreroca@hotmail.com','password' => Hash::make('pwd006'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	7	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	IRIS CRISTAL	','apaterno' => '	CAMARERO	','amaterno' => '	PRIEGO	','email' =>'pink082484@gmail.com','password' => Hash::make('pwd007'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	8	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JAVIER	','apaterno' => '	MALERVA	','amaterno' => '	MARTÍNEZ	','email' =>'javiermalerva80@gmail.com','password' => Hash::make('pwd008'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	9	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ANA ISABEL	','apaterno' => '	SALAZAR	','amaterno' => '	MARTÍNEZ	','email' =>'samaranai1@hotmail.com','password' => Hash::make('pwd009'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	10	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ENRIQUE	','apaterno' => '	LUNA	','amaterno' => '	MUÑOZ	','email' =>'prof.luna@hotmail.com','password' => Hash::make('pwd0010'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	11	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JESÚS	','apaterno' => '	DEL ÁNGEL	','amaterno' => '	ROBLES	','email' =>'chuzo_2008@hotmail.com','password' => Hash::make('pwd0011'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	12	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	TONATIU	','apaterno' => '	GARCIA	','amaterno' => '	AMADOR	','email' =>'tonanzin17@gmail.com','password' => Hash::make('pwd0012'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	13	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	KARLA ANGELICA	','apaterno' => '	VALERIO	','amaterno' => '	PAZ	','email' =>'profra.vp@hotmail.com','password' => Hash::make('pwd0013'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	14	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EMMANUEL	','apaterno' => '	OBANDO	','amaterno' => '	PEREZ	','email' =>'obando.83@hotmail.com','password' => Hash::make('pwd0014'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	15	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MARIO HERVIN	','apaterno' => '	SOSA	','amaterno' => '	SOSA	','email' =>'mariohervin@hotmail.com','password' => Hash::make('pwd0015'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	16	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ DANIEL	','apaterno' => '	LOYA	','amaterno' => '	ROSAS	','email' =>'josedanielloyarosas@gmail.com','password' => Hash::make('pwd0016'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	17	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUCAS	','apaterno' => '	BAUTISTA	','amaterno' => '	HERNANDEZ	','email' =>'astaez1978@outlook.com','password' => Hash::make('pwd0017'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	18	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ELIZABETH	','apaterno' => '	ESCOBAR	','amaterno' => '	PERDOMO	','email' =>'eli.escper@gmail.com','password' => Hash::make('pwd0018'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	19	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	GABRIEL ROBERTO	','apaterno' => '	ZAVALA	','amaterno' => '	QUINTERO	','email' =>'chaneque_zavala@hotmail.com','password' => Hash::make('pwd0019'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	20	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JUAN	','apaterno' => '	CRUZ	','amaterno' => '	LAGUNES	','email' =>'delboing_jcl@hotmail.com','password' => Hash::make('pwd0020'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	21	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	KARINA	','apaterno' => '	LANDA	','amaterno' => '	RODRÍGUEZ	','email' =>'karina.ne2008@hotmail.com','password' => Hash::make('pwd0021'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	22	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	NIMBE ELISDATH	','apaterno' => '	FLORES	','amaterno' => '	ACOSTA	','email' =>'braxton111@hotmail.com','password' => Hash::make('pwd0022'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	23	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ASAID	','apaterno' => '	GARCÍA	','amaterno' => '	MARTÍNEZ	','email' =>'gamasaid@hotmail.com','password' => Hash::make('pwd0023'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	24	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ ANTONIO	','apaterno' => '	PREZA	','amaterno' => '	REYES	','email' =>'snteeducacionfisica_mtz@outlook.com','password' => Hash::make('pwd0024'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	25	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EDUARDO MIGUEL	','apaterno' => '	MONTALVO	','amaterno' => '	MARTÍNEZ	','email' =>'kowboy_9@hotmail.com','password' => Hash::make('pwd0025'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	26	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MARIO ALBERTO	','apaterno' => '	ABURTO	','amaterno' => '	CANO	','email' =>'cano241085@hotmail.com','password' => Hash::make('pwd0026'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	27	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ARMANDO	','apaterno' => '	RODRÍGUEZ	','amaterno' => '	HERNÁNDEZ	','email' =>'rohea_2002@hotmail.com','password' => Hash::make('pwd0027'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	28	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	HABACUC VLADIMIR	','apaterno' => '	AGUILAR	','amaterno' => '	RAMÍREZ	','email' =>'vlad_aguilarjr@hotmail.com','password' => Hash::make('pwd0028'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	29	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARIA DE LOURDES	','apaterno' => '	VARGAS	','amaterno' => '	JUÁREZ	','email' =>'lulisvarjua@hotmail.com','password' => Hash::make('pwd0029'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	30	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ ANTONIO	','apaterno' => '	LÓPEZ	','amaterno' => '	HERNÁNDEZ	','email' =>'jossen_82@hotmail.com','password' => Hash::make('pwd0030'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	31	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JASON	','apaterno' => '	SOTO	','amaterno' => '	HERRERA	','email' =>'jasonsoto_122@hotmail.com','password' => Hash::make('pwd0031'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	32	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUIS ENRIQUE	','apaterno' => '	RUFINO	','amaterno' => '	CUEVAS	','email' =>'artes-upv2018@hotmail.com','password' => Hash::make('pwd0032'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	33	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARÍA DEL CARMEN	','apaterno' => '	HERNANDEZ	','amaterno' => '	ROSAS	','email' =>'mely_h3r769@hotmail.com','password' => Hash::make('pwd0033'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	34	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	JESSICA MARIANA	','apaterno' => '	JACOME	','amaterno' => '	GUTIERREZ	','email' =>'sntejessica@gmail.com','password' => Hash::make('pwd0034'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	35	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	TOMAS	','apaterno' => '	VIVEROS	','amaterno' => '	DE LA LUZ	','email' =>'tomyviver85@gmail.com','password' => Hash::make('pwd0035'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	36	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	YESICA MARITZA	','apaterno' => '	TRINIDAD	','amaterno' => '	CANO	','email' =>'yesicamaritza95@outlook.com','password' => Hash::make('pwd0036'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	37	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MILTON JAVIER	','apaterno' => '	MARTÍNEZ	','amaterno' => '	ORTEGA	','email' =>'milton_24@hotmail.com','password' => Hash::make('pwd0037'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	38	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	SERGIO	','apaterno' => '	HERNANDEZ	','amaterno' => '	MENDOZA	','email' =>'cergi23_@hotmail.com','password' => Hash::make('pwd0038'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	39	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	VICTOR	','apaterno' => '	PERALTA	','amaterno' => '	SOLÍS	','email' =>'v.peralta2014@hotmail.com','password' => Hash::make('pwd0039'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	40	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	SOLEDAD	','apaterno' => '	GARCIA	','amaterno' => '	LOBO	','email' =>'garcisol1973@gmail.com','password' => Hash::make('pwd0040'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	41	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	PATRICIA	','apaterno' => '	CARRASCO	','amaterno' => '	HERNÁNDEZ	','email' =>'paty_cardz@hotmail.com','password' => Hash::make('pwd0041'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	42	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RODRIGO	','apaterno' => '	SULVARAN	','amaterno' => '	ANDRADE	','email' =>'rodrigosulvaran@hotmail.com','password' => Hash::make('pwd0042'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	43	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LESTER BALAM	','apaterno' => '	PEREZ	','amaterno' => '	GARCIA	','email' =>'lesjaguar@hotmail.com','password' => Hash::make('pwd0043'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	44	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ÁNGEL MANUEL	','apaterno' => '	CAMPOS	','amaterno' => '	PACHECO	','email' =>'angelmanuelcampospacheco@gmail.com','password' => Hash::make('pwd0044'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	45	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	AGRIPINO	','apaterno' => '	ARGÜELLES	','amaterno' => '	ARGÜELLES	','email' =>'agripinoarar@gmail.com','password' => Hash::make('pwd0045'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	46	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	RUTH MARÍA	','apaterno' => '	PAVÁN	','amaterno' => '	SALOMÓN	','email' =>'pasaruth@hotmail.com','password' => Hash::make('pwd0046'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	47	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUIS FERNANDO	','apaterno' => '	CABRERA	','amaterno' => '	VILLEGAS	','email' =>'fercabvill2@hotmail.com','password' => Hash::make('pwd0047'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	48	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	GRACIELA AIDA	','apaterno' => '	PAVÓN	','amaterno' => '	ARMENTA	','email' =>'gapavon@hotmail.com','password' => Hash::make('pwd0048'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	49	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MIGUEL ANGEL	','apaterno' => '	VAZQUEZ	','amaterno' => '	VAZQUEZ	','email' =>'vazquezvazquezmiguel912@gmail.com','password' => Hash::make('pwd0049'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	50	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RAMON	','apaterno' => '	FERNANDEZ	','amaterno' => '	MATEOS	','email' =>'ramonfernandez3108@gmail.com','password' => Hash::make('pwd0050'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	51	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ISMAEL	','apaterno' => '	LOPEZ	','amaterno' => '	CABALLERO	','email' =>'struendo1986@hotmail.com','password' => Hash::make('pwd0051'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	52	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	LORENA	','apaterno' => '	CHIUNTI	','amaterno' => '	REYES	','email' =>'lorenchiu@hotmail.com','password' => Hash::make('pwd0052'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	53	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	BRENDA LUCIA	','apaterno' => '	SANTIAGO	','amaterno' => '	MEDINA	','email' =>'bennylu_santi@hotmail.com','password' => Hash::make('pwd0053'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	54	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	RUTH	','apaterno' => '	ABURTO	','amaterno' => '	MONTALVO	','email' =>'ruthaburtomontalvo@hotmail.com','password' => Hash::make('pwd0054'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	55	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EUSTOLIO	','apaterno' => '	YEPEZ	','amaterno' => '	LUNA	','email' =>'e_yepez@hotmail.com','password' => Hash::make('pwd0055'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	56	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RICARDO ADOLFO	','apaterno' => '	ZIENER	','amaterno' => '	RUISECO	','email' =>'bastian_ozil@hotmail.com','password' => Hash::make('pwd0056'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	57	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	FLOR MODESTA	','apaterno' => '	MATÍAS	','amaterno' => '	HERNÁNDEZ	','email' =>'flormh.0210@gmail.com','password' => Hash::make('pwd0057'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	58	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	IRMA ARACELI	','apaterno' => '	OVANDO	','amaterno' => '	MARTÍNEZ	','email' =>'oami750520@gmail.com','password' => Hash::make('pwd0058'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	59	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	FÉLIX	','apaterno' => '	MAYO	','amaterno' => '	RODRÍGUEZ	','email' =>'fmr306@hotmail.com','password' => Hash::make('pwd0059'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	60	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ROBERTO ALEJANDRO	','apaterno' => '	NORIEGA	','amaterno' => '	LAGUNAS	','email' =>'noriegaroberto@hotmail.com','password' => Hash::make('pwd0060'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	61	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MANUEL CLEMENTE	','apaterno' => '	LÓPEZ	','amaterno' => '	VELÁZQUEZ	','email' =>'mclopez76@gmail.com','password' => Hash::make('pwd0061'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	62	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	KARLA QUETZALLI	','apaterno' => '	HERNÁNDEZ	','amaterno' => '	ANDREW	','email' =>'selketescorpion@gmail.com','password' => Hash::make('pwd0062'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	63	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EDGAR	','apaterno' => '	SÁNCHEZ	','amaterno' => '	AGUAS	','email' =>'d165zong@gmail.com','password' => Hash::make('pwd0063'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	64	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	KARLA JANETTE	','apaterno' => '	RIVADENEYRA	','amaterno' => '	MEJIA	','email' =>'karlita_riva@hotmail.com','password' => Hash::make('pwd0064'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	65	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RAUL	','apaterno' => '	PIÑA	','amaterno' => '	ORTIZ	','email' =>'rulimpio@gmail.com','password' => Hash::make('pwd0065'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	66	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	VICTOR HUGO	','apaterno' => '	ZEPAHUA	','amaterno' => '	MONTALVO	','email' =>'hugozm1486@gmail.com','password' => Hash::make('pwd0066'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	67	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	PEDRO	','apaterno' => '	MÁRQUEZ	','amaterno' => '		','email' =>'pedromarquezgriss@hotmail.com','password' => Hash::make('pwd0067'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	68	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	HORACIO	','apaterno' => '	CORTINA	','amaterno' => '	ROCHA	','email' =>'corttynna@hotmail.com','password' => Hash::make('pwd0068'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	69	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	GASPAR	','apaterno' => '	FERNANDEZ	','amaterno' => '	GUZMAN	','email' =>'ferguz3104@hotmail.com','password' => Hash::make('pwd0069'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	70	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MIRIAM	','apaterno' => '	FÉLIX	','amaterno' => '	CANTU	','email' =>'pichis65@hotmail.com','password' => Hash::make('pwd0070'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	71	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	TATIANA	','apaterno' => '	PARDIÑAS	','amaterno' => '	CUERVO	','email' =>'tatilehi@gmail.com','password' => Hash::make('pwd0071'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	72	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ALBERTO	','apaterno' => '	TRINIDAD	','amaterno' => '	FLORES	','email' =>'soyhuasteco@hotmail.com','password' => Hash::make('pwd0072'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	73	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSAFAT	','apaterno' => '	MARTINEZ	','amaterno' => '	RODRÍGUEZ	','email' =>'josamr17@gmail.com','password' => Hash::make('pwd0073'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	74	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ DOMINGO	','apaterno' => '	BADIANO	','amaterno' => '	RUÍZ	','email' =>'tebadianodom@gmail.com','password' => Hash::make('pwd0074'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	75	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JORGE	','apaterno' => '	ROJAS	','amaterno' => '	GATICA	','email' =>'jorge_rojasgatica@hotmail.com','password' => Hash::make('pwd0075'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	76	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MANUEL	','apaterno' => '	LAGUNES	','amaterno' => '	PÉREZ	','email' =>'lagunes_111105@live.com.mx','password' => Hash::make('pwd0076'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	77	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	SILVINO ARMANDO	','apaterno' => '	MORALES	','amaterno' => '	AGUILAR	','email' =>'silarmoa@hotmail.com','password' => Hash::make('pwd0077'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	78	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARIA JUDITH	','apaterno' => '	CORONADO	','amaterno' => '	MALDONADO	','email' =>'mariajudithcoronado1977@gmail.com','password' => Hash::make('pwd0078'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	79	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	LEONOR	','apaterno' => '	SÁNCHEZ	','amaterno' => '	ARGUELLES	','email' =>'leosarle77@hotmail.com','password' => Hash::make('pwd0079'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	80	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	DIEGO IGNACIO	','apaterno' => '	HERRERA	','amaterno' => '	AGUILAR	','email' =>'lef_diegoherrera@hotmail.com','password' => Hash::make('pwd0080'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	81	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	XOCHITL EDUVIGES	','apaterno' => '	AGUILAR	','amaterno' => '	LOPEZ	','email' =>'agloxe@hotmail.com','password' => Hash::make('pwd0081'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	82	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MARCO ANTONIO	','apaterno' => '	PÉREZ	','amaterno' => '	RODRÍGUEZ	','email' =>'emilianozapata1971@gmail.com','password' => Hash::make('pwd0082'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	83	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	PATRICIA MARIA	','apaterno' => '	GAMBOA	','amaterno' => '	BELLO	','email' =>'patymgb77@gmail.com','password' => Hash::make('pwd0083'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	84	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ERNESTO NOÉ	','apaterno' => '	RODRÍGUEZ	','amaterno' => '	RAMÍREZ	','email' =>'zerimarnoe3@gmail.com','password' => Hash::make('pwd0084'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	85	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	DELMAR	','apaterno' => '	ORELLAN	','amaterno' => '	LANDA	','email' =>'delmar17@hotmail.com','password' => Hash::make('pwd0085'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	86	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LEON	','apaterno' => '	HERVERT	','amaterno' => '	AHUMADA	','email' =>'primguadalupevictoria@outlook.com','password' => Hash::make('pwd0086'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	87	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ARNULFO ALBERTO	','apaterno' => '	SÁNCHEZ	','amaterno' => '	MADERO	','email' =>'aasanchez@msev.gob.mx','password' => Hash::make('pwd0087'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	88	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ELSA ANDREA	','apaterno' => '	MALDONADO	','amaterno' => '	ALEMÁN	','email' =>'cucsiandrea@hotmail.com','password' => Hash::make('pwd0088'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	89	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ZENAIDA ALICIA	','apaterno' => '	SANTIAGO	','amaterno' => '	ALVARADO	','email' =>'zenaida69@hotmail.es','password' => Hash::make('pwd0089'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	90	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ESMERALDA	','apaterno' => '	FIERRO	','amaterno' => '	GALVAN	','email' =>'yayis18figa@hotmail.com','password' => Hash::make('pwd0090'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	91	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	DARIO	','apaterno' => '	RODRIGUEZ	','amaterno' => '	RESENDIZ	','email' =>'tauro27_6@hotmail.com','password' => Hash::make('pwd0091'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	92	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MIRSA ELEM	','apaterno' => '	TERRAZAS	','amaterno' => '	SALGADO	','email' =>'mirsaelem27@hotmail.com','password' => Hash::make('pwd0092'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	93	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSE MANUEL	','apaterno' => '	TRINIDAD	','amaterno' => '	MOLINA	','email' =>'pichomania.jmtm@gmail.com','password' => Hash::make('pwd0093'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	94	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	CLAUDIA	','apaterno' => '	NOTARIO	','amaterno' => '	ROJAS	','email' =>'notario29@hotmail.com','password' => Hash::make('pwd0094'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	95	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ERIKA	','apaterno' => '	JIMÉNEZ	','amaterno' => '	ROMÁN	','email' =>'jrpeque@hotmail.com','password' => Hash::make('pwd0095'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	96	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARISOL	','apaterno' => '	MORALES	','amaterno' => '	SANCHEZ	','email' =>'solecito.074@hotmail.com','password' => Hash::make('pwd0096'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	97	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	GLORIA	','apaterno' => '	ALMORA	','amaterno' => '	SANTIAGO	','email' =>'ceciliaalmora@hotmail.com','password' => Hash::make('pwd0097'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	98	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	SARA EUGENIA	','apaterno' => '	GARCÍA	','amaterno' => '	SÁNCHEZ	','email' =>'saraeugeniagarcia@hotmail.com.mx','password' => Hash::make('pwd0098'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	99	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ALONSO CAMILO	','apaterno' => '	NOVOA	','amaterno' => '	GASTALDI	','email' =>'alonsogastaldi@gmail.com','password' => Hash::make('pwd0099'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	100	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARISOL	','apaterno' => '	SANCHEZ	','amaterno' => '	HERNÁNDEZ	','email' =>'kiwinota_sol@hotmail.com','password' => Hash::make('pwd00100'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	101	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MARCO ANTONIO	','apaterno' => '	SÁNCHEZ	','amaterno' => '	CAMACHO	','email' =>'adry_8@hotmail.com','password' => Hash::make('pwd00101'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	102	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ROSALINO GABINO	','apaterno' => '	LAGUNES	','amaterno' => '	SALAS	','email' =>'lasrog@hotmail.com','password' => Hash::make('pwd00102'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	103	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MIRIAM	','apaterno' => '	MENDEZ	','amaterno' => '	MORENO	','email' =>'mayrim_capri294@hotmail.com','password' => Hash::make('pwd00103'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	104	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ALBERTO	','apaterno' => '	BAIZABAL	','amaterno' => '	HUERTA	','email' =>'aimarbaiza@hotmail.com','password' => Hash::make('pwd00104'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	105	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	VIRGINIA	','apaterno' => '	MIRANDA	','amaterno' => '	GUZMÁN	','email' =>'soymirandaguz@hotmail.com','password' => Hash::make('pwd00105'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	106	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MÓNICA SUSANA	','apaterno' => '	HERRERA	','amaterno' => '	CORONA	','email' =>'herreramonicasusana@gmail.com','password' => Hash::make('pwd00106'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	107	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JONATAN EBER	','apaterno' => '	GARCÉS	','amaterno' => '	REYES	','email' =>'jonagareyes@gmail.com','password' => Hash::make('pwd00107'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	141	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	PORFIRIO	','apaterno' => '	ANTONIO	','amaterno' => '	MARTINEZ	','email' =>'piyoyosabanero1@hotmail.com','password' => Hash::make('pwd00141'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	142	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	FRANCISCO	','apaterno' => '	CHI	','amaterno' => '	FABIAN	','email' =>'fchifabian@hotmail.com','password' => Hash::make('pwd00142'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	143	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	FRANCISCO	','apaterno' => '	ARRIAGA	','amaterno' => '	SANCHEZ	','email' =>'frank_escorpion965@hotmail.com','password' => Hash::make('pwd00143'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	144	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	CAROLINA	','apaterno' => '	TENORIO	','amaterno' => '	DÍAZ	','email' =>'catedi1120@gmail.com','password' => Hash::make('pwd00144'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	145	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ ALBERTO	','apaterno' => '	CÁRDENAS	','amaterno' => '	RODRÍGUEZ	','email' =>'cardenas566@gmail.com','password' => Hash::make('pwd00145'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	146	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JUAN MATEO	','apaterno' => '	MARTINEZ	','amaterno' => '	FLORES	','email' =>'juanmateomartinezflores@hotmail.com','password' => Hash::make('pwd00146'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	148	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JAVIER	','apaterno' => '	HERNANDEZ	','amaterno' => '	HERNANDEZ	','email' =>'segundogrado1819@gmail.com','password' => Hash::make('pwd00148'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	149	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	CAROLINA	','apaterno' => '	SALINAS	','amaterno' => '	LÓPEZ	','email' =>'carolina_salinas@rocketmail.com','password' => Hash::make('pwd00149'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	150	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARIANA	','apaterno' => '	MARANTO	','amaterno' => '	BECERRA	','email' =>'marianamarano@gmail.com','password' => Hash::make('pwd00150'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	151	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARÍA DEL CARMEN	','apaterno' => '	SÁNCHEZ	','amaterno' => '	RAMOS	','email' =>'krmenazul13@hotmail.com','password' => Hash::make('pwd00151'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	153	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ILCE SARAI	','apaterno' => '	COUTIÑO	','amaterno' => '	ARELLANO	','email' =>'ilsacoar66@hotmail.com','password' => Hash::make('pwd00153'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	154	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	BENY RAFAEL	','apaterno' => '	GALICIA	','amaterno' => '	OLIVARES	','email' =>'rafael_1979@hotmail.es','password' => Hash::make('pwd00154'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	155	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	FELIPE DE JESÚS	','apaterno' => '	SOSA	','amaterno' => '	LÓPEZ	','email' =>'phillip1274@hotmail.com','password' => Hash::make('pwd00155'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	156	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ELSA MADAHI	','apaterno' => '	SANTES	','amaterno' => '	PAREDES	','email' =>'elsama.santes@msev.gob.mx','password' => Hash::make('pwd00156'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	157	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ LUIS	','apaterno' => '	HERNÁNDEZ	','amaterno' => '	HERNÁNDEZ	','email' =>'jose_lef_16107@hotmail.com','password' => Hash::make('pwd00157'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	158	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	SELENE	','apaterno' => '	RIQUE	','amaterno' => '	NOLASCO	','email' =>'selenerique@gmail.com','password' => Hash::make('pwd00158'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	159	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	XOCHITL PATRICIA	','apaterno' => '	RUCABADO	','amaterno' => '	HERRERA	','email' =>'patricia140370@gmail.com','password' => Hash::make('pwd00159'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	160	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ELIZABETH	','apaterno' => '	BLANCO	','amaterno' => '	CADENA	','email' =>'eliblac20@gmail.com','password' => Hash::make('pwd00160'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	161	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	CRISTAL	','apaterno' => '	SAGAHÓN	','amaterno' => '	SÁNCHEZ	','email' =>'cristalsagahon82@gmail.com','password' => Hash::make('pwd00161'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	162	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ISMAEL	','apaterno' => '	RODRIGUEZ	','amaterno' => '	LOPEZ	','email' =>'maysorverjeny@hotmail.com','password' => Hash::make('pwd00162'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	179	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RAÚL	','apaterno' => '	CAAMAÑO	','amaterno' => '	PUEBLA	','email' =>'puebla-r@hotmail.com','password' => Hash::make('pwd00179'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	273	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	OSVALDO	','apaterno' => '	REYES	','amaterno' => '	ARANO	','email' =>'osvaldo_rea@hotmail.com','password' => Hash::make('pwd00273'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	171	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ERIKA	','apaterno' => '	RIOS	','amaterno' => '	SANTIAGO	','email' =>'acueri12@hotmail.com','password' => Hash::make('pwd00171'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	243	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUIS ANTONIO	','apaterno' => '	BECERRA	','amaterno' => '	MENDOZA	','email' =>'labm108@hotmail.com','password' => Hash::make('pwd00243'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	276	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty12@email.com','password' => Hash::make('pwd00276'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	242	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	VERA NAHIELY	','apaterno' => '	MARÍN	','amaterno' => '	AGUIRRE	','email' =>'maguivn@gmail.com','password' => Hash::make('pwd00242'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	280	,'id_secretaria' => 	1	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	LILLIAN SUSET	','apaterno' => '	CHAVEZ	','amaterno' => '	CERECEDO	','email' =>'lisuchace@hotmail.com','password' => Hash::make('pwd00280'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	281	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty143@email.com','password' => Hash::make('pwd00281'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	282	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty33@email.com','password' => Hash::make('pwd00282'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	285	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty11@email.com','password' => Hash::make('pwd00285'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	286	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	RAYMUNDO	','apaterno' => '	ROCHA	','amaterno' => '	HERRERA	','email' =>'rochaherreraray@gmail.com','password' => Hash::make('pwd00286'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	291	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty22@email.com','password' => Hash::make('pwd00291'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	292	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'e66mpty33@email.com','password' => Hash::make('pwd00292'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	300	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty44@email.com','password' => Hash::make('pwd00300'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	301	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty55@email.com','password' => Hash::make('pwd00301'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	305	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty66@email.com','password' => Hash::make('pwd00305'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	306	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty77@email.com','password' => Hash::make('pwd00306'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	307	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty88@email.com','password' => Hash::make('pwd00307'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	309	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty99@email.com','password' => Hash::make('pwd00309'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	310	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty23@email.com','password' => Hash::make('pwd00310'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	311	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptya@email.com','password' => Hash::make('pwd00311'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	314	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'e33wmptyd@email.com','password' => Hash::make('pwd00314'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	315	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptyd@email.com','password' => Hash::make('pwd00315'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	316	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emlljptys@email.com','password' => Hash::make('pwd00316'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	318	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empjjjgtyx@email.com','password' => Hash::make('pwd00318'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	147	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emailqq@empty.com','password' => Hash::make('pwd00147'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	175	,'id_secretaria' => 	1	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ISIDORO	','apaterno' => '	ORTEGA	','amaterno' => '	SÁNCHEZ	','email' =>'lolo_ortega80@hotmail.com','password' => Hash::make('pwd00175'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	108	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JUAN	','apaterno' => '	ITURBIDE	','amaterno' => '	MEUNIER	','email' =>'juaniturbide361@gmail.com','password' => Hash::make('pwd00108'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	109	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	SANDRA LUZ	','apaterno' => '	VEGA	','amaterno' => '	RAMÍREZ	','email' =>'sandraluzvegaramirez1958@gmail.com','password' => Hash::make('pwd00109'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	110	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	LUCIO	','apaterno' => '	LARA	','amaterno' => '	DEL ÁNGEL	','email' =>'lara02006@hotmail.com','password' => Hash::make('pwd00110'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	111	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	GREGORIO SILVERIO	','apaterno' => '	HERNÁNDEZ	','amaterno' => '	REYES	','email' =>'gregoriohernandezreyes54@gmail.com','password' => Hash::make('pwd00111'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	112	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JESÚS DAVID	','apaterno' => '	MORALES	','amaterno' => '	LÓPEZ	','email' =>'iguasol@hotmail.com','password' => Hash::make('pwd00112'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	113	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MANUELA FLORINDA	','apaterno' => '	SANTOS	','amaterno' => '	ZETINA	','email' =>'maflorsagi@hotmail.com','password' => Hash::make('pwd00113'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	114	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARÍA EUGENIA	','apaterno' => '	LINARES	','amaterno' => '	SANTOS	','email' =>'marilina64@hotmail.com','password' => Hash::make('pwd00114'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	115	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	FELICIANO	','apaterno' => '	SILVA	','amaterno' => '	ALMENDRA	','email' =>'silvaalfe@yahoo.com.mx','password' => Hash::make('pwd00115'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	116	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ERASMO	','apaterno' => '	DELGADO	','amaterno' => '	GUERRA	','email' =>'delgadoeg15@hotmail.com','password' => Hash::make('pwd00116'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	117	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	SUSANA	','apaterno' => '	MÉNDEZ	','amaterno' => '	GONZÁLEZ	','email' =>'susan2_94@hotmail.com','password' => Hash::make('pwd00117'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	118	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	AGUSTÍN FERNANDO	','apaterno' => '	LOZANO	','amaterno' => '	MALDONADO	','email' =>'halconnegrogus@hotmail.es','password' => Hash::make('pwd00118'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	119	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	RAFAELA	','apaterno' => '	CABRERA	','amaterno' => '	OCHOA	','email' =>'cabrerarafaela66@gmail.com','password' => Hash::make('pwd00119'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	120	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JESÚS ALEJANDRO	','apaterno' => '	TLALPA	','amaterno' => '	REYES	','email' =>'tlalpa241256@hotmail.com','password' => Hash::make('pwd00120'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	121	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ESTHER SIXTA	','apaterno' => '	BOEHLER	','amaterno' => '	SUÁREZ	','email' =>'maestra_boehler@hotmail.com','password' => Hash::make('pwd00121'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	122	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	CÉSAR	','apaterno' => '	ORTEGA	','amaterno' => '	RAMÍREZ	','email' =>'ortegaramirez_cesar@yahoo.com.mx','password' => Hash::make('pwd00122'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	274	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	EULALIA	','apaterno' => '	ÁLVAREZ	','amaterno' => '	ROJAS	','email' =>'lalitaalbarez2009@hotmail.com','password' => Hash::make('pwd00274'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	287	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptyhj@email.com','password' => Hash::make('pwd00287'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	288	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptydd@email.com','password' => Hash::make('pwd00288'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	289	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	BARBARA CONCEPCION	','apaterno' => '	PIÑA	','amaterno' => '	CASTRO	','email' =>'bcpinacastro@hotmail.com','password' => Hash::make('pwd00289'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	290	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptysdf@email.com','password' => Hash::make('pwd00290'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	293	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empdfty@email.com','password' => Hash::make('pwd00293'), ],
+            [ 'id_region' => 	3	,'id_delegacion' => 	294	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emptyfg@email.com','password' => Hash::make('pwd00294'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	302	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empaty@email.com','password' => Hash::make('pwd00302'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	303	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empxxty@email.com','password' => Hash::make('pwd00303'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	304	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empvty@email.com','password' => Hash::make('pwd00304'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	308	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empzzty@email.com','password' => Hash::make('pwd00308'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	312	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emrrpty@email.com','password' => Hash::make('pwd00312'), ],
+            [ 'id_region' => 	9	,'id_delegacion' => 	313	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empt1y@email.com','password' => Hash::make('pwd00313'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	317	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emp2ty@email.com','password' => Hash::make('pwd00317'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	181	,'id_secretaria' => 	8	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ	','apaterno' => '	BORREGO	','amaterno' => '	LOYA	','email' =>'jose_borrego1960@hotmail.com','password' => Hash::make('pwd00181'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	237	,'id_secretaria' => 	8	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	EUFRACIA	','apaterno' => '	ROMERO	','amaterno' => '	LUGO	','email' =>'eufraciaromero_lugo60@hotmail.com','password' => Hash::make('pwd00237'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	123	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	OSCAR	','apaterno' => '	MÉNDEZ	','amaterno' => '	HERNÁNDEZ	','email' =>'oscmendher@hotmail.com','password' => Hash::make('pwd00123'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	124	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	MARTIN JOSAFAT	','apaterno' => '	MORALES	','amaterno' => '	ALONSO	','email' =>'josafatmorales68@hotmail.com','password' => Hash::make('pwd00124'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	125	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MELINA	','apaterno' => '	DEL ANGEL	','amaterno' => '	RAMOS	','email' =>'mely_dar@hotmail.com','password' => Hash::make('pwd00125'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	126	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JUAN CARLOS	','apaterno' => '	GARCÍA	','amaterno' => '	ESTEVEZ	','email' =>'carlosgaest@hotmail.com','password' => Hash::make('pwd00126'), ],
+            [ 'id_region' => 	4	,'id_delegacion' => 	127	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ MIGUEL	','apaterno' => '	RUMAYOR	','amaterno' => '	ZACARIAS	','email' =>'jmrz1804@gmail.com','password' => Hash::make('pwd00127'), ],
+            [ 'id_region' => 	10	,'id_delegacion' => 	128	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ANA MARÍA DEL CARMEN	','apaterno' => '	BLANCO	','amaterno' => '	MENDOZA	','email' =>'anablanco82961@gmail.com','password' => Hash::make('pwd00128'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	129	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	JOSÉ ANTONIO	','apaterno' => '	SUÁREZ	','amaterno' => '	GÁLVEZ	','email' =>'suarezgalvezjoseantonio@gmail.com','password' => Hash::make('pwd00129'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	130	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ENRIQUE RAFAEL	','apaterno' => '	CHESTY	','amaterno' => '	VIVEROS	','email' =>'enrique_chesty@hotmail.com','password' => Hash::make('pwd00130'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	131	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ESTEPHANI JOSEPHA	','apaterno' => '	BARRADAS	','amaterno' => '	ROJAS	','email' =>'rojaspormama@gmail.com','password' => Hash::make('pwd00131'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	132	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	ARMANDO	','apaterno' => '	RUIZ	','amaterno' => '	MORALES	','email' =>'armando_ruiz21@hotmail.com','password' => Hash::make('pwd00132'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	133	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ANA LINE	','apaterno' => '	MEZA	','amaterno' => '	PÉREZ	','email' =>'linemeza@gmail.com','password' => Hash::make('pwd00133'), ],
+            [ 'id_region' => 	8	,'id_delegacion' => 	134	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	DIEGO ARMANDO	','apaterno' => '	SÁNCHEZ	','amaterno' => '	FERNÁNDEZ	','email' =>'geniussom84@gmail.com','password' => Hash::make('pwd00134'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	135	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	EZEQUIEL	','apaterno' => '	ORTEGA	','amaterno' => '	GARCÍA	','email' =>'garciacheque@hotmail.com','password' => Hash::make('pwd00135'), ],
+            [ 'id_region' => 	1	,'id_delegacion' => 	136	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	DANIEL	','apaterno' => '	CEQUERA	','amaterno' => '	HERVERT	','email' =>'dazulc@hotmail.com','password' => Hash::make('pwd00136'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	137	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ROCÍO DEL MAR	','apaterno' => '	RAMÍREZ	','amaterno' => '	PADILLA	','email' =>'mar.ramirezp84@gmail.com','password' => Hash::make('pwd00137'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	138	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	WENDY	','apaterno' => '	BLANCO	','amaterno' => '	MORALES	','email' =>'wblanco@msev.gob.mx','password' => Hash::make('pwd00138'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	139	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	GUILLERMINA	','apaterno' => '	PARRA	','amaterno' => '	LOZANO	','email' =>'guilleplsnte@gmail.com','password' => Hash::make('pwd00139'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	140	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	PROF.	','nombre' => '	CÉSAR	','apaterno' => '	VALENZUELA	','amaterno' => '	VÁZQUEZ	','email' =>'goodloocky@hotmail.com','password' => Hash::make('pwd00140'), ],
+            [ 'id_region' => 	2	,'id_delegacion' => 	228	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	IMELDA	','apaterno' => '	CRUZ	','amaterno' => '	SAN ROMAN	','email' =>'ime1966@hotmail.com','password' => Hash::make('pwd00228'), ],
+            [ 'id_region' => 	11	,'id_delegacion' => 	188	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	ZULMA	','apaterno' => '	HIPOLITO PATRICIO	','amaterno' => '	RUSSELL	','email' =>'zulaka3@hotmail.com','password' => Hash::make('pwd00188'), ],
+            [ 'id_region' => 	7	,'id_delegacion' => 	277	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	PROFA.	','nombre' => '	MARIA DE JESUS	','apaterno' => '	MONTELONGO	','amaterno' => '	BRICEÑO	','email' =>'empty2@email.com','password' => Hash::make('pwd00277'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	284	,'id_secretaria' => 	15	,'id_genero' => 	2	,'titulo' => '	C.	','nombre' => '	MARÍA LUISA	','apaterno' => '	ZORRILLA	','amaterno' => '	HERNÁNDEZ	','email' =>'mzorrilla@email.com','password' => Hash::make('pwd00284'), ],
+            [ 'id_region' => 	5	,'id_delegacion' => 	295	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	ANGEL	','apaterno' => '	DEL RIVERO	','amaterno' => '	MARTINEZ	','email' =>'angelrm@email.com','password' => Hash::make('pwd00295'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	296	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'empty6@email.com','password' => Hash::make('pwd00296'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	297	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emp64ty@email.com','password' => Hash::make('pwd00297'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	298	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'em6pty@email.com','password' => Hash::make('pwd00298'), ],
+            [ 'id_region' => 	6	,'id_delegacion' => 	299	,'id_secretaria' => 	15	,'id_genero' => 	1	,'titulo' => '	EMPTY	','nombre' => '	EMPTY	','apaterno' => '	EMPTY	','amaterno' => '	EMPTY	','email' =>'emp6ty@email.com','password' => Hash::make('pwd00299'), ],
         ];
 
+        // Recorrer el array de usuarios y crearlos en la base de datos
+        foreach ($users as $userData) {
+            $user = User::create([
+                'id_region' => trim($userData['id_region']),
+                'id_delegacion' => trim($userData['id_delegacion']),
+                'id_secretaria' => trim($userData['id_secretaria']),
+                'id_genero' => trim($userData['id_genero']),
+                'titulo' => trim($userData['titulo']),
+                'nombre' => trim($userData['nombre']),
+                'apaterno' => trim($userData['apaterno']),
+                'amaterno' => trim($userData['amaterno']),
+                'email' => trim($userData['email']),
+                    'email_verified_at' => now(),
+                'password' => trim($userData['password']),
+                    'two_factor_secret' => null,
+                    'two_factor_recovery_codes' => null,
+                    'remember_token' => Str::random(10),
+                    'profile_photo_path' => null,
+                    'current_team_id' => null,                
+            ]);
 
 
-            $table->unsignedBigInteger('id_region');
-            $table->unsignedBigInteger('id_delegacion');
-            $table->unsignedBigInteger('id_secretaria');
-            $table->string('titulo' , 150);
-            $table->string('nombre' , 150);
-            $table->string('apaterno' , 150);
-            $table->string('amaterno' , 150);
-            $table->unsignedBigInteger('id_genero');
 
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
-            
-            $table->string('telefono' , 20)->nullable()->default(null);
-            $table->string('direccion' ,250)->nullable()->default(null);
-            $table->string('cp' , 50)->nullable()->default(null);
-            $table->string('ciudad' , 50)->nullable()->default(null);
-            $table->string('estado' , 50)->nullable()->default(null);        
 
-*/
+        //         'id_region' => 5,
+        //         'id_delegacion' => 138,
+        //         'id_secretaria' => 16,
+        //         'titulo' => 'PROF.',
+        //         'nombre' => 'User',
+        //         'apaterno' => 'Admin',
+        //         'amaterno' => '',
+        //         'id_genero' => 1,
+
+        //         'email' => 'admin@example.com',
+
+        //         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //         'telefono' => '1111111111',
+        //         'direccion' => 'capricornio #23',
+        //         'cp' => '91000',
+        //         'ciudad' => 'Xalapa',
+        //         'estado' => 'Veracruz',
+
+
+
+
+
+
+
+
+
+
+            // Asignar el rol Secretaria al usuario
+            $secretariaRole = Role::where('name', 'Secretario')->first();
+            if ($secretariaRole) {
+                $user->roles()->attach($secretariaRole);
+            }
+        }
+
+    }
+}
