@@ -58,19 +58,19 @@
                         <td> {{ $region->region }} </td>
                         <td> {{ $region->sede }} </td>
                         <td>
-                            {{-- @can('region.edit') --}}
+                            @can('region.edit')
                                 <a href="{{route('region.edit',$region)}}" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                                     <i class="fa fa-lg fa-fw fa-pen"></i>
                                 </a>
-                            {{-- @endcan --}}
+                            @endcan
 
-                            {{-- @can('region.destroy') --}}
+                            @can('region.destroy')
                                 {!! Form::open(['route' => ['region.destroy',$region], 'method' => 'delete', 'class' => 'formEliminar', 'style' => 'display: inline']) !!}
                                     @csrf
                                     @method('DELETE')
                                     {{ Form::button('<i class="fa fa-lg fa-fw fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-xs btn-default text-danger mx-1 shadow', 'title' => 'Borrar']) }}
                                 {!! Form::close() !!}
-                            {{-- @endcan --}}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

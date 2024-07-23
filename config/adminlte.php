@@ -335,15 +335,26 @@ return [
         ],
         [
             'text' => 'Usuarios',
-            'route' => 'user.index',
+            'url' => 'admin/users',
             'icon' => 'fas fa-fw fa-users',
             'can' => 'user.index',
         ],
         [
             'text' => 'Regiones',
-            'route' => 'region.index',
+            'url' => 'admin/regiones',
             'icon' => 'fas fa-fw fa-city',
+            'can' => 'region.index',
         ],
+        [
+            'text' => 'Roles',
+            'url' => 'admin/roles',
+            'can' => 'role.index',
+        ],
+        [
+            'text' => 'Permisos',
+            'url' => 'admin/permissions',
+            'can' => 'permission.index',
+        ]
     ],
 
     /*
@@ -382,7 +393,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -399,8 +410,22 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                // Anexados
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/2.0.2/css/dataTables.dataTables.css',
+                ],
+
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css',
+                ],                
             ],
         ],
+
+
         'Select2' => [
             'active' => false,
             'files' => [

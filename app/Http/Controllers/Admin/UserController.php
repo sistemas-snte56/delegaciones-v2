@@ -12,17 +12,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:user.index')->only('index');
+        $this->middleware('permission:user.index')->only('index');
 
         #El permiso user.edit sera cuando se vaya a la vista edit o update
-        $this->middleware('can:user.edit')->only('edit','update');
-        $this->middleware('can:user.create')->only('create','store');
-        $this->middleware('can:user.destroy')->only('distroy');
+        $this->middleware('permission:user.edit')->only('edit','update');
+        $this->middleware('permission:user.create')->only('create','store');
+        $this->middleware('permission:user.destroy')->only('distroy');
 
     }
 

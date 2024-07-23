@@ -22,7 +22,7 @@
             {!! Form::open(['route'=>['region.store'], 'method'=>'POST']) !!}
                 @csrf
 
-                <div class="row" style="width: 60%, margin: 0 auto; ">
+                <div class="row">
 
                     <x-adminlte-input type="text" name="region" id="region" label="REGIÓN" placeholder="Ingresa nombre de region" label-class="text-orange" value="{{old('region')}}" fgroup-class="col-md-6" >
                         <x-slot name="prependSlot">

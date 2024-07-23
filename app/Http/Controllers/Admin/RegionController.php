@@ -6,8 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Region;
 use Illuminate\Http\Request;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
 class RegionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:region.index')->only('index');
+
+        #El permiso region.edit sera cuando se vaya a la vista edit o update
+        $this->middleware('permission:region.edit')->only('edit','update');
+        $this->middleware('permission:region.create')->only('create','store');
+        $this->middleware('permission:region.destroy')->only('distroy');
+
+    }
+
     /**
      * Display a listing of the resource.
      */

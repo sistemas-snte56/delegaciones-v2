@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\RegionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+    
     Route::resource('admin/users', UserController::class)->names('user');
     Route::resource('admin/regiones', RegionController::class)->names('region');
+    Route::resource('admin/roles', RoleController::class)->names('rol');
+    Route::get('admin/roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole'])->name('rol.add.permissions');
+    Route::put('admin/roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('rol.give.permissions');
+    Route::resource('admin/permissions', PermissionController::class)->names('permission');
 });
