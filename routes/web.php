@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\RegionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,8 @@ Route::middleware([
     Route::get('admin/roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole'])->name('rol.add.permissions');
     Route::put('admin/roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('rol.give.permissions');
     Route::resource('admin/permissions', PermissionController::class)->names('permission');
+
+    
+    Route::get('user/perfil', [UserProfileController::class, 'show'])->name('perfil.show');
+    Route::put('user/perfil', [UserProfileController::class, 'update'])->name('perfil.update');
 });

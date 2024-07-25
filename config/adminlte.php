@@ -325,14 +325,14 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url' => 'user/profile',
+            'url' => 'user/perfil',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'change_password',
-            'url' => 'user/profile',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // [
+        //     'text' => 'change_password',
+        //     'url' => 'user/profile',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
             'text' => 'Usuarios',
             'url' => 'admin/users',
